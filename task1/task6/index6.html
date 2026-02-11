@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>Task6</title>
+</head>
+<body>
+<p>Open the browser console to see the message</p>
+<script>
+console.log("\nvar Datatype")
+//var declaration
+var a=10;
+console.log("Initial var value:",a);
+//Reassignment with var(Allowed)
+a=20;
+console.log("After reassignment(var):",a);
+//Redeclaration with var(Allowed)
+var a=30;
+console.log("After redeclaration(var):",a);
+console.log("\nlet Datatype")
+//let declaration
+let b=100;
+console.log("Initial let value:",b);
+//Reassignment with let(Allowed)
+b=200;
+console.log("After reassignment(let):",b);
+//Redeclaration with let(Not Allowed)
+//let b=300; 
+//This will cause SyntaxError
+console.log("\nconst Datatype")
+//const declaration
+const c=500;
+console.log("Initial const value:",c);
+//Reassignment with const(Not Allowed)
+//c=600;
+//This will cause TypeError: Assignment to constant variable
+
+//Redeclaration with const(Not Allowed)
+//const c=700;
+//This will cause SyntaxError: Identifier 'c' has already been declared
+console.log("Program executed successfully (except commented error lines)");
+</script>
+</body>
+</html>

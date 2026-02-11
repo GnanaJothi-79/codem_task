@@ -1,0 +1,1 @@
+console.log("The HTML page has loaded successfully");
