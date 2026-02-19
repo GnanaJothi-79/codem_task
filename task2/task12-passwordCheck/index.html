@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Strength Validator</title>
+</head>
+<body style="text-align:center; margin-top:80px; font-family:Arial;">
+<h2>Password Strength Validator</h2>
+<input type="password" id="pass" placeholder="Enter Password">
+<br><br>
+<button onclick="checkPassword()">Check Strength</button>
+<script>
+function validatePassword(password){
+    if(password.length===0){
+        return "Password cannot be empty";
+    }
+    let hasUpper=/[A-Z]/.test(password);
+    let hasLower=/[a-z]/.test(password);
+    let hasNumber=/[0-9]/.test(password);
+    let hasSpecial=/[!@#$%^&*]/.test(password);
+    let score = 0;
+    if(password.length>=8) score++;
+    if(hasUpper) score++;
+    if(hasLower) score++;
+    if(hasNumber) score++;
+    if(hasSpecial) score++;
+    if(score<=2)
+        return "Weak Password";
+    else if(score<=4)
+        return "Medium Password";
+    else
+        return "Strong Password";
+}
+function checkPassword(){
+    let password=document.getElementById("pass").value;
+    let result=validatePassword(password);
+    alert(result);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notification Filter</title>
+</head>
+<body style="text-align:center; margin-top:80px; font-family:Arial;">
+<h2>Notification Filter</h2>
+<input type="text" id="msg" placeholder="Enter notification message" size="40">
+<br><br>
+<label>Urgent?</label>
+<select id="urgent">
+    <option value="true">Yes</option>
+    <option value="false">No</option>
+</select>
+<br><br>
+<button onclick="filterNotification()">Check Notification</button>
+<script>
+function checkNotification(message,isUrgent){
+    if(message.trim()===""){
+        return "Message cannot be empty";
+    }
+    let text=message.toLowerCase();
+    let hasImportantWord=text.includes("alert")||text.includes("error")||text.includes("warning");
+    let type;
+    let finalMessage;
+    if(isUrgent||hasImportantWord){
+        type="Important";
+        finalMessage="IMPORTANT:"+message.toUpperCase();
+    }
+    else{
+        type="Normal";
+        finalMessage="INFO:"+message.toLowerCase();
+    }
+    return "Type:"+type+"\n"+finalMessage;
+}
+function filterNotification(){
+    let message=document.getElementById("msg").value;
+    let isUrgent=document.getElementById("urgent").value==="true";
+    let result=checkNotification(message,isUrgent);
+    alert(result);
+}
+</script>
+</body>
+</html>

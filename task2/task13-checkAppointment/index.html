@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Appointment Confirmation</title>
+</head>
+<body style="text-align:center; margin-top:80px; font-family:Arial;">
+<h2>Appointment Confirmation System</h2>
+<label>Date Available?</label>
+<select id="date">
+    <option value="true">Yes</option>
+    <option value="false">No</option>
+</select>
+<br><br>
+<label>User Confirmed?</label>
+<select id="confirm">
+    <option value="true">Yes</option>
+    <option value="false">No</option>
+</select>
+<br><br>
+<button onclick="runCheck()">Check Appointment</button>
+<script>
+function checkAppointment(dateAvailable,userConfirmed){
+    if(!dateAvailable){
+        return "Appointment Rejected";
+    }
+    else if(!userConfirmed){
+        return "Appointment Rejected";
+    }
+    else{
+        return "Appointment Confirmed";
+    }
+}
+function runCheck(){
+    let dateAvailable=document.getElementById("date").value==="true";
+    let userConfirmed=document.getElementById("confirm").value==="true";
+    let result=checkAppointment(dateAvailable, userConfirmed);
+    alert(result);
+}
+</script>
+</body>
+</html>

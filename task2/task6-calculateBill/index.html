@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Billing System</title>
+</head>
+<body style="text-align:center; margin-top:70px; font-family:Arial;">
+<h2>Simple Billing System</h2>
+<label>Enter Bill Amount:</label>
+<input type="number" id="amount" placeholder="Enter Bill Amount">
+<br><br>
+<button onclick="placeBill(false)">Regular</button>
+<button onclick="placeBill(true)">Member</button>
+<script>
+function calculateBill(billAmount,isMember){
+    if(billAmount<=0||isNaN(billAmount)){
+        console.log("Error: Invalid Bill Amount");
+        return;
+    }
+    let discount=0;
+    if(isMember){
+        discount=10;
+    }
+    else if(billAmount>=1000){
+        discount=5;
+    }
+    else{
+        discount=0;
+    }
+    let discountAmount=billAmount*discount/100;
+    let finalAmount=billAmount-discountAmount;
+    let gift=(finalAmount>=1500)?"Free Gift Available":"No Gift";
+    console.log("Bill Amount: ₹"+billAmount);
+    console.log("Member: "+(isMember?"Yes":"No"));
+    console.log("Discount: "+discount+"%");
+    console.log("Final Amount: ₹"+finalAmount);
+    console.log("Gift: "+gift);
+}
+function placeBill(isMember){
+    let amount=parseFloat(document.getElementById("amount").value);
+    calculateBill(amount,isMember);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Eligibility Checker</title>
+</head>
+<body style="text-align:center; margin-top:70px; font-family:Arial;">
+<h2>Travel Eligibility Checker</h2>
+<label>Enter Age:</label>
+<input type="number" id="age" placeholder="Enter Age"><br><br>
+<label>Ticket Type:</label>
+<select id="ticket">
+    <option value="normal">Normal</option>
+    <option value="priority">Priority</option>
+</select>
+<br><br>
+<label>Has ID?</label>
+<select id="id">
+    <option value="true">Yes</option>
+    <option value="false">No</option>
+</select>
+<br><br>
+<button onclick="checkTravel()">Check Eligibility</button>
+<script>
+function checkTravelEligibility(age,ticketType,hasID){
+    if(age<=0||isNaN(age)){
+        console.log("Invalid age");
+        return;
+    }
+    if(ticketType!=="normal"&&ticketType!=="priority"){
+        console.log("Invalid ticket type");
+        return;
+    }
+    let eligibility;
+    if(age>=18&&hasID){
+        eligibility="Eligible";
+    }
+    else if(age<18&&ticketType==="priority"){
+        eligibility="Eligible with guardian";
+    }
+    else{
+        eligibility="Not eligible";
+    }
+    let fare = 200;
+    if(ticketType==="priority"){
+        fare+=50;
+    }
+    console.log("Age:"+age);
+    console.log("Ticket Type:"+ticketType);
+    console.log("Has ID:"+(hasID?"Yes":"No"));
+    console.log("Eligibility:"+eligibility);
+    console.log("Fare: ₹"+fare);
+}
+function checkTravel(){
+    let age=parseInt(document.getElementById("age").value);
+    let ticketType=document.getElementById("ticket").value;
+    let hasID=document.getElementById("id").value==="true";
+    checkTravelEligibility(age,ticketType,hasID);
+}
+</script>
+</body>
+</html>

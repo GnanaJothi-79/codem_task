@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Order Status</title>
+</head>
+<body style="text-align:center; margin-top:80px; font-family:Arial;">
+<h2>Online Order Status</h2>
+<label>Payment Done?</label>
+<select id="paid">
+    <option value="true">Yes</option>
+    <option value="false">No</option>
+</select>
+<br><br>
+<label>Item In Stock?</label>
+<select id="stock">
+    <option value="true">Yes</option>
+    <option value="false">No</option>
+</select>
+<br><br>
+<button onclick="check()" style="padding:10px 20px;">Check Order</button>
+<script>
+function checkOrder(isPaid,inStock){
+    if(!isPaid){
+        return "Payment required";
+    }
+    else if(isPaid && inStock){
+        return "Order confirmed";
+    }
+    else{
+        return "Order delayed";
+    }
+}
+function check(){
+    let isPaid=document.getElementById("paid").value==="true";
+    let inStock=document.getElementById("stock").value==="true";
+    let result=checkOrder(isPaid,inStock);
+    alert(result);
+}
+</script>
+</body>
+</html>

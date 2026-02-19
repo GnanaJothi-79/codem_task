@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Action Advisor</title>
+</head>
+<body style="text-align:center; margin-top:80px; font-family:Arial;">
+<h2>Weather Action Advisor</h2>
+<label>Weather Condition:</label>
+<select id="weather">
+    <option value="rainy">Rainy</option>
+    <option value="sunny">Sunny</option>
+    <option value="cold">Cold</option>
+    <option value="windy">Windy</option>
+</select>
+<br><br>
+<label>Temperature (°C):</label>
+<input type="number" id="temp" placeholder="Enter temperature">
+<br><br>
+<button onclick="checkWeather()">Get Advice</button>
+<script>
+function weatherAdvisor(condition,temperature){
+    let advice="";
+    if(condition==="rainy"){
+        advice="Carry an umbrella";
+    }
+    else if(condition==="sunny"&&temperature>=35){
+        advice="Stay hydrated and wear sunscreen";
+    }
+    else if(condition==="cold"){
+        advice="Wear warm clothes";
+    }
+    else if(condition==="windy"){
+        advice="Secure loose items and be careful";
+    }
+    else{
+        advice="Weather looks pleasant";
+    }
+    return advice;
+}
+function checkWeather(){
+    let condition=document.getElementById("weather").value;
+    let temperature=parseFloat(document.getElementById("temp").value);
+    let result=weatherAdvisor(condition,temperature);
+    alert(result);
+}
+</script>
+</body>
+</html>

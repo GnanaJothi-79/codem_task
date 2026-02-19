@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Message Intent Detection</title>
+</head>
+<body style="text-align:center; margin-top:70px; font-family:Arial;">
+<h2>Message Intent Detection</h2>
+<input type="text" id="msg" placeholder="Enter message" size="45"><br><br>
+<button onclick="runDetect()">Detect Intent</button>
+<script>
+function detectIntent(message){
+    if(message.trim()===""){
+        console.log("Invalid message");
+        return;
+    }
+    let text=message.toLowerCase();
+    let isQuestion=text.includes("?");
+    let isComplaint=text.includes("problem")||text.includes("not working");
+    let intent;
+    if(isQuestion&&isComplaint){
+        intent="Urgent request";
+    }
+    else if(isComplaint){
+        intent="Complaint";
+    }
+    else if(isQuestion){
+        intent="Question";
+    }
+    else{
+        intent="Other";
+    }
+    console.log("Original Message:"+message);
+    console.log("Detected Intent:"+intent);
+}
+function runDetect(){
+    let message=document.getElementById("msg").value;
+    detectIntent(message);
+}
+</script>
+</body>
+</html>

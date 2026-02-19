@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order & Discount Processor</title>
+</head>
+<body style="text-align:center; margin-top:60px; font-family:Arial;">
+<h2>Order & Discount Processor</h2>
+<label>Enter Purchase Amount:</label>
+<input type="number" id="amount" placeholder="Enter Amount">
+<br><br>
+<label>Are you a Member?</label>
+<select id="member">
+    <option value="true">Yes</option>
+    <option value="false">No</option>
+</select>
+<br><br>
+<label>Coupon Code:</label>
+<input type="text" id="coupon" placeholder="Enter Coupon">
+<br><br>
+<button onclick="placeOrder('Small')">Small(below ₹1000)</button>
+<button onclick="placeOrder('Medium')">Medium(₹1000 to ₹5000)</button>
+<button onclick="placeOrder('Large')">Large(above ₹5000)</button>
+<script>
+function validateCoupon(couponCode){
+    if(couponCode === "SAVE10"){
+        console.log("Coupon Valid: YES");
+        return true;
+    }
+    else if(couponCode === ""){
+        console.log("Coupon Empty");
+        return false;
+    }
+    else{
+        console.log("Coupon Invalid");
+        return false;
+    }
+}
+function processOrder(orderAmount, isMember, couponCode){
+    if(isNaN(orderAmount) || orderAmount<=0){
+        console.log("Invalid Order Amount");
+        return;
+    }
+    let discount=0;
+    if(orderAmount>=3000 || isMember){
+        discount=20;
+    }
+    else if(orderAmount>=1500 && couponCode==="SAVE10"){
+        discount=10;
+    }
+    else if(couponCode===""){
+        discount=0;
+    }
+    else{
+        discount=5;
+    }
+    let discountAmount=orderAmount*discount/100;
+    let finalAmount=orderAmount-discountAmount;
+    let deliveryStatus;
+    if(finalAmount>=2000){
+        deliveryStatus="Free Delivery";
+    }
+    else{
+        finalAmount +=100;
+        deliveryStatus="₹100 Delivery Charge Added";
+    }
+    validateCoupon(couponCode);
+    console.log("Purchase Amount: ₹" +orderAmount);
+    console.log("Discount: "+ discount +"%");
+    console.log("Final Amount: ₹" +finalAmount);
+    console.log("Delivery: " +deliveryStatus);
+}
+function placeOrder(orderType){
+    let orderAmount=parseFloat(document.getElementById("amount").value);
+    let isMember=document.getElementById("member").value === "true";
+    let couponCode=document.getElementById("coupon").value.toUpperCase().trim();
+    console.log("Order Type: " +orderType);
+    processOrder(orderAmount, isMember, couponCode);
+}
+</script>
+</body>
+</html>

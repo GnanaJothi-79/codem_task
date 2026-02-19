@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Access System</title>
+</head>
+<body>
+<h2>Login Access System</h2>
+<button onclick="validatelogin('admin','admin123')">Admin</button>
+<button onclick="validatelogin('user','user123')">user</button>
+<button onclick="validatelogin('guest','guest123')">guest</button>
+<script>
+    function validatelogin(username, password) {
+        if (username==="admin"&& password==="admin123") {
+                console.log("Admin:Fully access granted");
+            }
+        else if (username==="user" && password==="user123") {
+                console.log("User:Limited access granted");
+            
+        }
+        else if (username==="guest" && password==="guest123") {
+                console.log( "Quest:Read-only access granted");
+            }
+        else {
+                 console.log( "Invalid credentilas");
+
+        }
+    }
+</script>
+</body>
+</html>

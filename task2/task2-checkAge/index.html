@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Ticket Permission</title>
+    <style>
+        body{
+            font-family: Arial;
+            text-align: center;
+            margin-top: 80px;
+        }
+        input, select{
+            padding:8px;
+            margin:5px;
+        }
+        button{
+            padding:10px 20px;
+            margin:10px;
+            cursor:pointer;
+        }
+        #result{
+            margin-top:20px;
+            font-size:18px;
+            font-weight:bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Movie Ticket Permission</h2>
+
+<!-- Age Input -->
+<input type="number" id="age" placeholder="Enter Age"><br>
+
+<!-- Permission Dropdown -->
+<select id="permission">
+    <option value="true">Has Permission</option>
+    <option value="false">No Permission</option>
+</select>
+<br><br>
+
+<!-- Buttons -->
+<button onclick="process('adult')">Adult</button>
+<button onclick="process('teen')">Teen</button>
+<button onclick="process('child')">Child</button>
+
+<div id="result"></div>
+
+<script>
+
+function checkTicket(age, hasPermission){
+    // Teen rule: 13–17 allowed only with permission
+    if(age >= 13 && age <= 17){
+        return hasPermission === true;
+    }
+    // Others allowed normally
+    else{
+        return true;
+    }
+}
+
+function process(type){
+    let age = parseInt(document.getElementById("age").value);
+    let hasPermission = document.getElementById("permission").value === "true";
+
+    let allowed = checkTicket(age, hasPermission);
+
+    if(allowed){
+        document.getElementById("result").innerHTML = "Allowed";
+        document.getElementById("result").style.color = "green";
+    } else {
+        document.getElementById("result").innerHTML = "Not Allowed";
+        document.getElementById("result").style.color = "red";
+    }
+}
+
+</script>
+
+</body>
+</html>

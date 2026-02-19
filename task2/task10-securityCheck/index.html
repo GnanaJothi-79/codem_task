@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account Security Check</title>
+</head>
+<body style="text-align:center; margin-top:80px; font-family:Arial;">
+<h2>Account Security Check</h2>
+<label>Password Correct?</label>
+<select id="password">
+    <option value="true">Yes</option>
+    <option value="false">No</option>
+</select>
+<br><br>
+<label>OTP Verified?</label>
+<select id="otp">
+    <option value="true">Yes</option>
+    <option value="false">No</option>
+</select>
+<br><br>
+<label>Account Blocked?</label>
+<select id="blocked">
+    <option value="false">No</option>
+    <option value="true">Yes</option>
+</select>
+<br><br>
+<button onclick="checkLogin()">Login</button>
+<script>
+function checkAccount(passwordOk,otpOk,isBlocked){
+    if(passwordOk&&otpOk &&!isBlocked){
+        return "Login Successful";
+    }
+    else{
+        return "Login Failed";
+    }
+}
+function checkLogin(){
+    let passwordOk=document.getElementById("password").value==="true";
+    let otpOk=document.getElementById("otp").value==="true";
+    let isBlocked=document.getElementById("blocked").value==="true";
+    let result=checkAccount(passwordOk,otpOk,isBlocked);
+    alert(result);
+}
+</script>
+</body>
+</html>

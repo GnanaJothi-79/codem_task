@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coin Toss Game</title>
+</head>
+<body style="text-align:center; margin-top:100px; font-family:Arial;">
+<h2>Coin Toss Game</h2>
+<button onclick="play('Heads')" style="padding:10px 20px;"">Heads</button>
+<button onclick="play('Tails')" style="padding:10px 20px;"">Tails</button>
+<script>
+function tossCoin(){
+    let random=Math.random()<0.5?"Heads":"Tails";
+    return random;
+}
+function play(playerChoice){
+    let computerChoice = tossCoin();
+    let result;
+    if(playerChoice===computerChoice)
+        result="Player Wins!";
+    else
+        result="Player Loses!";
+    alert(
+        "Player Choice: "+playerChoice +
+        "\nComputer Choice: "+computerChoice +
+        "\nResult: "+result
+    );
+}
+</script>
+</body>
+</html>
