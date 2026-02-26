@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Keyboard event</title>
+  <style>
+    #display {
+      border: 2px solid black;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h3>Press any key</h3>
+  <div id="display">Waiting for key press</div>
+  <script>
+    let display=document.getElementById("display");
+    document.addEventListener("keydown",function(event){
+      let keyPressed=event.key;
+      display.textContent="Key Down: "+keyPressed;
+      if (keyPressed==="Enter"){
+        display.style.backgroundColor="lightgreen";
+      }
+      if (keyPressed==="Escape"){
+        display.style.backgroundColor="lightcoral";
+      }
+    });
+    document.addEventListener("keyup",function(event){
+      display.textContent="Key Up: "+event.key;
+    });
+  </script>
+</body>
+</html>

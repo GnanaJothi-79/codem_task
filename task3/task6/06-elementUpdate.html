@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Selecting elements and  updating content</title>
+</head>
+<body>
+  <h1 id="maintitle">Original title</h1>
+  <p class="description">First paragraph</p>
+  <p class="description">Second paragraph</p>
+  <div class="box">Box element</div>
+  <script>
+    let title=document.getElementById("maintitle");
+    let descriptions=document.getElementsByClassName("description");
+    let box=document.querySelector(".box");
+    title.textContent="updated title";
+    for(let i=0;i<descriptions.length;i++) {
+      descriptions[i].textContent="updated paragraph"+(i+1);
+    }
+    box.textContent="box updated";
+    title.style.color="blue";
+    title.style.fontSize="30px";
+    for (let i=0;i<descriptions.length;i++){
+      descriptions[i].style.color="green";
+      descriptions[i].style.backgroundColor="lightgray";
+    }
+    box.style.border="2px solid black";
+    box.style.padding="10px";
+    box.style.backgroundColor="yellow";
+  </script>
+</body>
+</html>

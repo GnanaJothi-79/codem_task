@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Toggle class on multiple elements</title>
+  <style>
+  .highlight {
+    background-color: rgb(233, 109, 227);
+    }
+  </style>
+</head>
+<body>
+  <button id="toggleBtn">Toggle btn</button>
+  <div class="box">Box1</div>
+  <div class="box">Box2</div>
+  <div class="box">Box3</div>
+  <script>
+    let boxes=document.getElementsByClassName("box");
+    let button=document.getElementById("toggleBtn");
+    button.addEventListener("click",function() {
+      for (let i=0;i<boxes.length;i++) {
+        boxes[i].classList.toggle("highlight");
+      }
+    });
+  </script>
+</body>
+</html>

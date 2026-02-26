@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple To-Do App</title>
+  <style>
+    body { font-family: Arial; }
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+    li {
+      margin: 8px 0;
+      cursor: pointer;
+    }
+    button {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+<script>
+  let todoData={tasks:[]};
+  let input=document.createElement("input");
+  input.placeholder="Enter task";
+  let addBtn=document.createElement("button");
+  addBtn.textContent="Add Task";
+  let ul=document.createElement("ul");
+  document.body.appendChild(input);
+  document.body.appendChild(addBtn);
+  document.body.appendChild(ul);
+  addBtn.addEventListener("click",function(){
+    let taskText=input.value.trim();
+    if (taskText===""){
+      alert("Task cannot be empty");
+      return;
+    }
+    let taskObj={text:taskText,completed: false};
+    todoData.tasks.push(taskObj);
+    let li=document.createElement("li");
+    li.textContent=taskObj.text;
+    li.addEventListener("click",function(){
+      taskObj.completed=!taskObj.completed;
+      li.classList.toggle("completed");
+      console.log(todoData);
+    });
+    let removeBtn=document.createElement("button");
+    removeBtn.textContent="Remove";
+    removeBtn.addEventListener("click",function(e) {
+      e.stopPropagation();
+      ul.removeChild(li);
+      let index=todoData.tasks.indexOf(taskObj);
+      todoData.tasks.splice(index,1);
+      console.log(todoData);
+    });
+    li.appendChild(removeBtn);
+    ul.appendChild(li);
+    input.value="";
+    console.log(todoData);
+  });
+</script>
+</body>
+</html>

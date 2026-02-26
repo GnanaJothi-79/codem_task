@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dynamically create list from objects</title>
+</head>
+<body>
+  <div id="listContainer">
+    <h2>Product list</h2>
+  </div>
+  <script>
+    let products=[{name:"Laptop",price:75000},{name:"Mobile",price:25000},{name:"Headphones",price:2000}];
+    let container=document.getElementById("listContainer");
+    let ul=document.createElement("ul");
+    for (let i=0;i<products.length;i++){
+      let li=document.createElement("li");
+      li.textContent="Product:"+products[i].name+" | Price:₹"+products[i].price;
+      ul.appendChild(li);
+    }
+    container.appendChild(ul);
+  </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Looping through student marks</title>
+</head>
+<body>
+  <h2>Student marks pass/fail status</h2>
+  <script>
+    let studentMarks={"Alice":85,"Bob":58,"Charlie":72,"Diana":45,"Ethan":90};
+    const passMark = 60;
+    for(let student in studentMarks) {
+      let marks=studentMarks[student];
+      let status=marks>=passMark?"Pass":"Fail";
+      console.log(`Student:${student}, Marks:${marks}, Status:${status}`);
+    }
+  </script>
+</body>
+</html>

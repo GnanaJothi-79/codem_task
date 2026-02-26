@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Object methods using this</title>
+</head>
+<body>
+  <h2>Object method with "this" keyword</h2>
+  <script>
+    let user={
+      name:"Gopal",
+      balance:5000,
+      deposit:function(amount) {
+        console.log("Current balance:",this.balance);
+        this.balance+=amount;
+        console.log("Updated balance after deposit:",this.balance);
+      }
+    };
+    user.deposit(2000);
+    console.log("balance outside method:",user.balance);
+    console.log("final object state:",user);
+  </script>
+</body>
+</html>

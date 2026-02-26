@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Function modifying an object</title>
+</head>
+<body>
+  <h2>Function Modifying an Object</h2>
+  <script>
+    let product={name:"Laptop",price:75000,stock:10};
+    function updateProduct(obj) {
+      obj.price=70000;
+      obj.stock=15;
+      return `Updated Product Details:
+      Name:${obj.name}
+      Price:₹${obj.price}
+      Stock:${obj.stock}`;
+    }
+    let summary=updateProduct(product);
+    console.log(summary);
+  </script>
+</body>
+</html>
