@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Event Object Example</title>
+</head>
+<body>
+  <button class="btn">Button 1</button>
+  <button class="btn">Button 2</button>
+  <button class="btn">Button 3</button>
+  <p id="result">Click any button</p>
+  <script>
+    let buttons=document.querySelectorAll(".btn");
+    let result=document.getElementById("result");
+    buttons.forEach(function(btn){
+      btn.addEventListener("click",function(event) {
+        let clickedText=event.target.textContent;
+        let eventType=event.type;
+        result.textContent="You clicked: "+clickedText+" | Event: "+eventType;
+      });
+    });
+  </script>
+</body>
+</html>
