@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editable user table</title>
+</head>
+<body>
+    <h2>Editable user table</h2>
+    <div id="usertable"></div>
+    <script>
+        let users=[{name:"jothi",age:22,email:"jothi@gmail.com"},
+            {name:"anu",age:21,email:"anu@gmail.com"},
+            {name:"vasan",age:23,email:"vasan@gmail.com"}
+        ];
+        function rendertable(){
+            let div=document.getElementById("usertable");
+            div.innerHTML="";
+            let table=document.createElement("table");
+            table.border="1";
+            table.innerHTML="<tr><th>Name</th><th>Age</th><th>Email</th><th>Action</th></tr>";
+            for(let i=0;i<users.length;i++){
+                let row=document.createElement('tr');
+                row.innerHTML= "<td>" + users[i].name + "</td>" +
+                "<td>" + users[i].age + "</td>" +
+                "<td>" + users[i].email + "</td>" +
+                "<td><button onclick='edituser(" + i + ")'>Edit</button></td>";
+                table.appendChild(row);
+            }
+            div.appendChild(table);
+        }
+        function edituser(index){
+            let div=document.getElementById("usertable");
+            let table=document.createElement("table");
+            table.border="1";
+            table.innerHTML="<tr><th>Name</th><th>Age</th><th>Email</th><th>Action</th></tr>";
+            for(let i=0;i<users.length;i++){
+                let row=document.createElement("tr");
+                if(i===index){
+                    row.innerHTML="<td><input id='name" + i + "' value='" + users[i].name + "'></td>" +
+                    "<td><input id='age" + i + "' value='" + users[i].age + "'></td>" +
+                    "<td>" + users[i].email + "</td>" +
+                    "<td><button onclick='saveuser(" + i + ")'>Save</button></td>";
+                }
+                else{
+                    row.innerHTML="<td>" + users[i].name + "</td>" +
+                "<td>" + users[i].age + "</td>" +
+                "<td>" + users[i].email + "</td>" +
+                "<td><button onclick='edituser(" + i + ")'>Edit</button></td>";
+                }
+                table.appendChild(row);
+            }
+            div.innerHTML="";
+            div.appendChild(table);
+        }
+        function saveuser(index){
+            let newname=document.getElementById("name"+index).value;
+            let newage=document.getElementById("age"+index).value;
+            users[index].name=newname;
+            users[index].age=Number(newage);
+            rendertable();
+        }
+        rendertable();
+    </script>
+</body>
+</html>

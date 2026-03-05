@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search highlight</title>
+    <style>
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>search highlighter</h2>
+    <input type="text" id="searchbox" placeholder="search..." onkeyup="searchtext()">
+    <ul id="list"></ul>
+    <script>
+        let texts=["Javascript","Java","Python","React","node"];
+        function display(list,searchTerm=""){
+            let ul=document.getElementById("list");
+            ul.innerHTML="";
+            if(list.length===0){
+                ul.innerHTML="<li>No result found</li>";
+            }
+            for(let i=0;i<list.length;i++){
+                let li=document.createElement("li");
+                let text=list[i];
+                if(searchTerm!==""){
+                    let regex=new RegExp(searchTerm,"gi");
+                    text=text.replace(regex,match=>`<span class="highlight">${match}</span>`);
+
+                }
+                li.innerHTML=text;
+                ul.appendChild(li);
+            }
+        }
+        function searchtext(){
+            let searchvalue=document.getElementById("searchbox").value.toLowerCase();
+            let filtered=[];
+            for(let i=0;i<texts.length;i++){
+                if(texts[i].toLowerCase().includes(searchvalue)){
+                    filtered.push(texts[i]);
+                }
+            }
+            display(filtered,searchvalue);
+        }
+        display(texts);
+    </script>
+</body>
+</html>

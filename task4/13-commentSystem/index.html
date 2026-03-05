@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comment System</title>
+    <style>
+        .comment {
+            border: 1px solid gray;
+            padding: 8px;
+            margin: 5px 0;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h2>Comment system</h2>
+<div id="app"></div>
+<h3>Latest Comments</h3>
+<div id="commentList"></div>
+<script>
+    let comments=[];
+    let input=document.createElement("input");
+    input.placeholder="Enter comment";
+    let button=document.createElement("button");
+    button.innerText="Submit";
+    document.getElementById("app").appendChild(input);
+    document.getElementById("app").appendChild(button);
+    button.onclick=function(){
+        let text=input.value.trim();
+        if(text==="") return;
+        comments.push(text);
+        input.value="";
+        displayComments();
+    };
+    function displayComments(){
+        let container=document.getElementById("commentList");
+        container.innerHTML="";
+        if (comments.length===0){
+            container.innerHTML ="<p>No Comments in the Array</p>";
+            return;
+        }
+        let count=0;
+        for(let i=comments.length-1;i>=0 && count<5;i--) {
+            let div=document.createElement("div");
+            div.className="comment";
+            div.innerText=comments[i];
+            container.appendChild(div);
+            count++;
+        }
+    }
+    displayComments();
+</script>
+</body>
+</html>

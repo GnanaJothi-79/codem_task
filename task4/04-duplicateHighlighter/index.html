@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Duplicate highlighter</title>
+    <style>
+        .duplicate {
+            background-color: yellow;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Duplicate highlighter</h2>
+    <ul id="itemlist"></ul>
+    <script>
+        let items=["apple","banana","apple","orange","banana","grape"];
+        function findduplicates(){
+            let duplicates=[];
+            for(let i=0;i<items.length;i++){
+                for(let j=i+1;j<items.length;j++){
+                    if(items[i]===items[j]){
+                        if(!duplicates.includes(items[i])){
+                            duplicates.push(items[i]);
+                        }
+                    }
+                }
+            }
+            return duplicates;
+        }
+        function displayitems(){
+            let list=document.getElementById("itemlist");
+            list.innerHTML="";
+            let duplicatelist=findduplicates();
+            for(let i=0;i<items.length;i++){
+                let li=document.createElement("li");
+                li.innerHTML=items[i];
+                if(duplicatelist.includes(items[i])){
+                    li.classList.add("duplicate");
+                }
+                list.appendChild(li);
+            }
+        }
+        displayitems();
+    </script>
+</body>
+</html>

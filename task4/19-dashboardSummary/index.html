@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard Summary</title>
+    <style>
+        .card {
+            display: inline-block;
+            width: 150px;
+            height: 100px;
+            margin: 10px;
+            padding: 15px;
+            border: 1px solid #000;
+            border-radius: 8px;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+<h2>Dashboard summary</h2>
+<div id="dashboard"></div>
+<script>
+    let users=[1,2,3,4];
+    let orders=[500,1200,800];
+    let revenue=[5000,3000];
+    function renderDashboard(){
+        let container=document.getElementById("dashboard");
+        container.innerHTML="";
+        let totalUsers=users.length;
+        let totalOrders=orders.length;
+        let totalRevenue=0;
+        for (let i=0;i<revenue.length;i++){
+            totalRevenue+=revenue[i];
+        }
+        let userCard=document.createElement("div");
+        userCard.className="card";
+        userCard.innerHTML="<h3>Total Users</h3><p>"+totalUsers+"</p>";
+        let orderCard=document.createElement("div");
+        orderCard.className="card";
+        orderCard.innerHTML="<h3>Total Orders</h3><p>"+totalOrders+"</p>";
+        let revenueCard=document.createElement("div");
+        revenueCard.className="card";
+        revenueCard.innerHTML="<h3>Total Revenue</h3><p>₹"+totalRevenue+"</p>";
+        container.appendChild(userCard);
+        container.appendChild(orderCard);
+        container.appendChild(revenueCard);
+    }
+    renderDashboard();
+</script>
+</body>
+</html>

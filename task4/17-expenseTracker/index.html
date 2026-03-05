@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Tracker</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+<h2>Expense tracker</h2>
+<div id="expenseContainer"></div>
+<h3 id="categoryTotals"></h3>
+<h3 id="grandTotal"></h3>
+<script>
+    let expenses=[
+        {category:"Food",amount:200 },{category:"Travel",amount:500 },{category:"Food",amount:300 },{category:"Shopping",amount:150 }
+    ];
+    function displayExpenses(){
+        let container=document.getElementById("expenseContainer");
+        container.innerHTML="";
+        let table=document.createElement("table");
+        table.innerHTML="<tr><th>Category</th><th>Amount (₹)</th></tr>";
+        for (let i=0;i<expenses.length;i++){
+            let row=document.createElement("tr");
+            row.innerHTML="<td>"+expenses[i].category+"</td>"+"<td>"+expenses[i].amount+"</td>";
+            table.appendChild(row);
+        }
+        container.appendChild(table);
+        calculateTotals();
+    }
+    function calculateTotals(){
+        let categoryMap={};
+        let grandTotal=0;
+        for (let i=0;i<expenses.length;i++){
+            let cat=expenses[i].category;
+            let amt=expenses[i].amount;
+            if (categoryMap[cat]===undefined){
+                categoryMap[cat]=amt;
+            } else {
+                categoryMap[cat]+=amt;
+            }
+            grandTotal+=amt;
+        }
+        let catText="";
+        for(let cat in categoryMap){
+            catText+=cat+": ₹"+categoryMap[cat]+"<br>";
+        }
+        document.getElementById("categoryTotals").innerHTML=catText;
+        document.getElementById("grandTotal").innerText="Grand Total: ₹"+grandTotal;
+    }
+    displayExpenses();
+</script>
+</body>
+</html>

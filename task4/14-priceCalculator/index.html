@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Price Calculator</title>
+</head>
+<body>
+<h2>Price calculator</h2>
+<div id="priceList"></div>
+<h3 id="result"></h3>
+<script>
+    let prices=[100,200,300];
+    function calculatePrice(){
+        let container=document.getElementById("priceList");
+        container.innerHTML="<h3>Prices:</h3>";
+        let total=0;
+        for (let i=0;i<prices.length;i++) {
+            let p=document.createElement("p");
+            p.innerText="Item "+(i+1)+": ₹"+prices[i];
+            container.appendChild(p);
+            total+=prices[i];
+        }
+        let tax=total*0.10;
+        let afterTax=total+tax;
+        let discount=total*0.05;
+        let finalAmount=afterTax-discount;
+        document.getElementById("result").innerHTML ="Total = ₹" + total + "<br>" +
+            "Tax (10%) = ₹" + tax + "<br>" +
+            "After Tax = ₹" + afterTax + "<br>" +
+            "Discount (5%) = ₹" + discount + "<br>" +
+            "<b>Final Amount = ₹" + finalAmount + "</b>";
+    }
+    calculatePrice();
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sorting visualizer</title>
+    <style>
+        #container {
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .bar {
+            width: 40px;
+            background-color: steelblue;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>sorting visualizer</h2>
+    <button onclick="startsort()">start sorting</button>
+    <div id="container"></div>
+    <script>
+        let numbers=[];
+        for(let i=0;i<5;i++){
+            numbers.push(Math.floor(Math.random()*50)+1);
+        }
+        function render(){
+            let container=document.getElementById("container");
+            container.innerHTML="";
+            for(let i=0;i<numbers.length;i++){
+                let bar=document.createElement("div");
+                bar.className="bar";
+                bar.style.height=numbers[i]*3+"px";
+                bar.innerText=numbers[i];
+                container.appendChild(bar);
+            }
+        }
+        function sleep(ms){
+            return new Promise(resolve=>setTimeout(resolve,ms));
+        }
+        async function startsort(){
+            for(let i=0;i<numbers.length-1;i++){
+                for(let j=0;j<numbers.length-i-1;j++){
+                    if(numbers[j]>numbers[j+1]){
+                        let temp=numbers[j];
+                        numbers[j]=numbers[j+1];
+                        numbers[j+1]=temp;
+                        render();
+                        await sleep(700);
+                    }
+                }
+            }
+        }
+        render();
+    </script>
+</body>
+</html>

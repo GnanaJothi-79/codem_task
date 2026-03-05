@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Form Builder</title>
+</head>
+<body>
+    <h2>Dynamic form builder</h2>
+    <form id="form"></form>
+    <button onclick="submitform()">submit</button>
+    <h3>form data:</h3>
+    <pre id="output"></pre>
+    <script>
+        let fields=[{type:"text",label:"Name"},
+            {type:"email",label:"Email"},
+            {type:"number",label:"Age"}
+        ];
+        let formdata=[];
+        function createform(){
+            let form=document.getElementById("form");
+            for(let i=0;i<fields.length;i++){
+                let label=document.createElement("label");
+                label.innerText=fields[i].label;
+                form.appendChild(label);
+                form.appendChild(document.createElement("br"));
+                let input=document.createElement("input");
+                input.type=fields[i].type;
+                input.id="field"+i;
+                form.appendChild(input);
+                 form.appendChild(document.createElement("br"));
+            }
+        }
+        function submitform(){
+            formdata=[];
+            for(let i=0;i<fields.length;i++){
+                let value=document.getElementById("field"+i).value;
+                formdata.push({label:fields[i].label,value:value});
+            }
+            document.getElementById("output").innerText=JSON.stringify(formdata,null,2);
+            console.log(formdata);
+
+        }
+        createform();
+    </script>
+
+</body>
+</html>

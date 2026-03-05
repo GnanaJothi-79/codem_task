@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drag Order Simulator</title>
+    <style>
+        .item {
+            margin: 5px 0;
+        }
+        button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<h2>Drag order simulator</h2>
+<div id="itemList"></div>
+<script>
+    let items=["Item A","Item B","Item C","Item D"];
+    function renderItems(){
+        let container=document.getElementById("itemList");
+        container.innerHTML="";
+        for (let i=0;i<items.length;i++){
+            let div=document.createElement("div");
+            div.className="item";
+            div.innerHTML=items[i];
+            let upBtn=document.createElement("button");
+            upBtn.innerText="Move Up";
+            upBtn.onclick=function(){
+                moveUp(i);
+            };
+            let downBtn=document.createElement("button");
+            downBtn.innerText="Move Down";
+            downBtn.onclick=function(){
+                moveDown(i);
+            };
+            if (i===0)upBtn.disabled=true;
+            if (i===items.length-1)downBtn.disabled=true;
+            div.appendChild(upBtn);
+            div.appendChild(downBtn);
+            container.appendChild(div);
+        }
+    }
+    function moveUp(index){
+        if (index===0) return;
+        let temp=items[index];
+        items[index]=items[index-1];
+        items[index-1]=temp;
+        renderItems();
+    }
+    function moveDown(index){
+        if (index===items.length-1) return;
+        let temp=items[index];
+        items[index]=items[index+1];
+        items[index+1]=temp;
+        renderItems();
+    }
+    renderItems();
+</script>
+</body>
+</html>

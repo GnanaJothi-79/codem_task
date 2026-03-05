@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manual pagination</title>
+</head>
+<body>
+    <h2>Manual pagination</h2>
+    <ul id="itemlist"></ul>
+    <button id="prevbtn" onclick="prevpage()">prev</button>
+    <button id="nextbtn" onclick="nextpage()">next</button>
+    <p id="pageinfo"></p>
+    <script>
+        let allitems=[];
+        for(let i=1;i<=20;i++){
+            allitems.push(i);
+        }
+        let currentpage=1;
+        let itemperpage=5;
+        function render(){
+            let list=document.getElementById("itemlist");
+            list.innerHTML="";
+            let start=(currentpage-1)*itemperpage;
+            let end=start+itemperpage;
+            for(let i=start;i<end&&i<allitems.length;i++){
+                let li=document.createElement("li");
+                li.innerText=(allitems[i]);
+                list.appendChild(li);
+            }
+            updatebutton();
+        }
+        function nextpage(){
+        currentpage++;
+        render();
+        }
+        function prevpage(){
+            currentpage--;
+            render();
+        }
+        function updatebutton(){
+            let totalpage=allitems.length/itemperpage;
+            document.getElementById("prevbtn").disabled=currentpage===1;
+            document.getElementById("nextbtn").disabled=currentpage===totalpage;
+            document.getElementById("pageinfo").innerText="page"+currentpage+"of"+totalpage;
+        }
+        render();
+    </script>
+</body>
+</html>

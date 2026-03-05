@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory Manager</title>
+     <style>
+        table {
+            border-collapse: collapse;
+        }
+        td, th {
+            padding: 8px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h2>Inventory manager</h2>
+    <div id="inventory"></div>
+    <script>
+        let inventory=[{product:"pen",quantity:10},
+        {product:"note",quantity:5},
+        {product:"eraser",quantity:2}
+        ];
+        function render(){
+            let div=document.getElementById("inventory");
+            div.innerHTML="";
+            let table=document.createElement("table");
+            table.innerHTML="<tr><th>Product</th><th>Quantity</th><th>Action</th></tr>";
+            for(let i=0;i<inventory.length;i++){
+                let tr=document.createElement("tr");
+                tr.innerHTML="<td>"+inventory[i].product+"</td>"+"<td>"+inventory[i].quantity+"</td>"+"<td>"+
+                    "<button onclick='increase("+i+")'>+</button>"+
+                    "<button onclick='decrease("+i+")'>-</button>"+"</tr>";
+                table.appendChild(tr);
+            }
+            div.appendChild(table);
+
+        }
+        function increase(index){
+            inventory[index].quantity++;
+            render();
+        }
+        function decrease(index){
+            if(inventory[index].quantity>0){
+                inventory[index].quantity--;
+            }
+            render();
+        }
+        render();
+    </script>
+</body>
+</html>

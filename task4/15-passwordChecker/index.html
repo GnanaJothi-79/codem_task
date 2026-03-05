@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Rule Checker</title>
+    <style>
+        .passed {
+            color: green;
+        }
+        .failed {
+            color: red;
+        }
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+<h2>Password Rule Checker</h2>
+<input type="password" id="passwordInput" placeholder="Enter password">
+<h3>Rules:</h3>
+<ul id="ruleList"></ul>
+<script>
+    let rules=[
+        {rule:"Minimum 8 characters",isPassed:false},
+        {rule:"At least one uppercase letter",isPassed:false},
+        {rule:"At least one number",isPassed:false},
+        {rule:"At least one special character",isPassed:false}
+    ];
+    let ruleList=document.getElementById("ruleList");
+    function displayRules(){
+        ruleList.innerHTML="";
+        for (let i=0;i<rules.length;i++){
+            let li=document.createElement("li");
+            li.innerText=rules[i].rule;
+            li.className=rules[i].isPassed?"passed":"failed";
+            ruleList.appendChild(li);
+        }
+    }
+    displayRules();
+    document.getElementById("passwordInput").addEventListener("input",function(){
+        let pwd=this.value;
+        rules[0].isPassed=pwd.length>=8;
+        rules[1].isPassed=/[A-Z]/.test(pwd);
+        rules[2].isPassed=/[0-9]/.test(pwd);
+        rules[3].isPassed=/[!@#$%^&*(),.?":{}|<>]/.test(pwd);
+        displayRules();
+    });
+</script>
+</body>
+</html>
