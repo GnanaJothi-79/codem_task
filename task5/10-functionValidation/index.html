@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Advanced Function Validation</title>
+</head>
+<body>
+<h2>User Registration Form</h2>
+<form id="userForm">
+    <label>Name:</label>
+    <input type="text" id="name"><br><br>
+    <label>Email:</label>
+    <input type="text" id="email"><br><br>
+    <label>Password:</label>
+    <input type="password" id="password"><br><br>
+    <button type="submit">Submit</button>
+</form>
+<script>
+    function isEmpty(value) {
+        return value.trim()==="";
+    }
+    function validateEmail(email) {
+        let emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+    }
+    function validatePassword(password) {
+        return password.length>=8;
+    }
+    function validateForm(event) {
+        let name=document.getElementById("name").value;
+        let email=document.getElementById("email").value;
+        let password=document.getElementById("password").value;
+        let valid=true;
+        if (isEmpty(name)||isEmpty(email)||isEmpty(password)){
+            console.log("Error: All fields must be filled.");
+            valid=false;
+        }
+        if(!validateEmail(email)){
+            console.log("Error: Invalid email format.");
+            valid=false;
+        }
+        if(!validatePassword(password)){
+            console.log("Error: Password must be at least 8 characters.");
+            valid=false;
+        }
+        event.preventDefault();
+        if(valid){
+            console.log("Form validation successful.");
+        } else {
+            console.log("Form invalid");     
+        }
+    }
+    document.getElementById("userForm").addEventListener("submit", validateForm);
+</script>
+</body>
+</html>

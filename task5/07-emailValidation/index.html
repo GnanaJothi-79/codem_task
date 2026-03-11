@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Email Regex Validation</title>
+</head>
+<body>
+<h2>Email validation form</h2>
+<form id="emailForm">
+    <label>Email:</label>
+    <input type="text" id="email">
+    <br>
+    <button type="submit">Submit</button>
+</form>
+<script>
+    document.getElementById("emailForm").addEventListener("submit",function(event) {
+        let email=document.getElementById("email").value;
+        let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        event.preventDefault();
+        if(emailPattern.test(email)){
+            console.log("Valid email format");
+        } else {
+            console.log("Invalid email format");
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Password Length Validation</title>
+</head>
+<body>
+<h2>Password validation form</h2>
+<form id="form">
+    <label>Password:</label>
+    <input type="password" id="password">
+    <br><br>
+    <button type="submit">Submit</button>
+</form>
+<script>
+    document.getElementById("form").addEventListener("submit", function(event) {
+        let password=document.getElementById("password").value;
+        event.preventDefault();
+        if(password.length>=8) {
+            console.log("Valid Password");
+        } else {
+            console.log("Password must be at least 8 characters long.");
+        }
+
+    });
+</script>
+</body>
+</html>

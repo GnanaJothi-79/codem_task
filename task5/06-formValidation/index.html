@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Form Validation</title>
+</head>
+<body>
+<h2> Form Validation</h2>
+<form id="myform">
+    <label>Name:</label>
+    <input type="text" id="name"><br>
+    <label>Email:</label>
+    <input type="text" id="email"><br>
+    <button type="submit">Submit</button>
+</form>
+<script>
+    document.getElementById("myform").addEventListener("submit",function(event){
+        event.preventDefault();
+        let name=document.getElementById("name").value;
+        let email=document.getElementById("email").value;
+        if(name===""||email==="") {
+            console.log("Validation Failed: Name or Email cannot be empty");
+        } else {
+            console.log("Form submitted successfully.");
+        }
+    });
+</script>
+</body>
+</html>

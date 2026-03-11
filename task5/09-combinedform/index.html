@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Combined Form Validation</title>
+</head>
+<body>
+<h2>User Form</h2>
+<form id="userForm">
+    <label>Name:</label>
+    <input type="text" id="name"><br>
+    <label>Email:</label>
+    <input type="text" id="email"><br>
+    <label>Password:</label>
+    <input type="password" id="password"><br>
+    <button type="submit">Submit</button>
+</form>
+<script>
+document.getElementById("userForm").addEventListener("submit",function(event){
+    let name=document.getElementById("name").value;
+    let email=document.getElementById("email").value;
+    let password=document.getElementById("password").value;
+    let emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let isValid=true;
+    if(name===""||email===""||password===""){
+        console.log("Error: All fields are required.");
+        isValid=false;
+    }
+    if(!emailPattern.test(email)){
+        console.log("Error: Invalid email format.");
+        isValid=false;
+    }
+    if(password.length<8){
+        console.log("Error: Password must be at least 8 characters long.");
+        isValid = false;
+    }
+    event.preventDefault();
+    if(isValid){
+        console.log("Form validation successful.");
+    }else{
+         console.log("Form invalid");
+    }
+});
+</script>
+</body>
+</html>
